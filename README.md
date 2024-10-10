@@ -16,13 +16,14 @@
 #### $${\color{orange}Original \space Author \space : \space \color{white}Kenneth \space C. \space Mazie \space \color{lightblue}(kcmjr \space AT \space kcmjr.com)}$$
 
 ## $${\color{grey}Description:}$$ 
-Creates and stores AES encrypted credential files for import into scripts.  This script has two functions.  First it prompts for admin user credentials and generates a random key.
-The credentials are then encrypted using the key as a salt and AES encryption.  The key and encrypted
-credential are both stored in text file in the script local folder (this can be changed).  It's recommended that
-the file names be altered and stored in different location.  Once created the credentials can be called
-by scripts requiring admin credentials.  Using this method you can set all your scripts to automatically 
-run using the stored credentials without prompting.  If the files already exist the script will decrypt 
-them when prompted and display the results on screen.
+This script creates and stores AES encrypted credential files for import into scripts.  The script has two functions, encode and decode.  
+* First it prompts for admin user credentials and generates a random 32 byte key.
+* The credentials are then encrypted using the key as a salt and AES encryption.  The key and encrypted
+credential are both stored in text files in the script local folder (the location can be changed).  It's recommended that
+the file names be altered and then stored in a different location.
+* Once created the encrypted files can be called by scripts requiring admin credentials.  Using this method you can set all your scripts to automatically 
+run using the stored credentials without prompting.
+* If the files already exist in the script folder it script will decrypt them if prompted and display the results on screen.
 
 ## $${\color{grey}Notes:}$$ 
 * Normal operation is with no command line options.
@@ -33,7 +34,8 @@ Command line options for testing:
 * None
  
 ### $${\color{grey}Screenshots:}$$ 
-[Screen Output](https://github.com/kcmazie/CredentialWithKey/blob/main/Screen1.jpg "Screen Output")
+This is an example of the screen output (assuming you use dark mode anyway...)
+![Screen Output](https://github.com/kcmazie/CredentialsWithKey/blob/main/Screen1.jpg "Screen Output")
 
 ### $${\color{grey}Warnings:}$$ 
 * NOTE!!!  This is basic obfuscation.  Anyone with experieince with PowerShell might be able to recover the credentials.  This is mainly to keep passwords out of clear text.
