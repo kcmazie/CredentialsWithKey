@@ -17,13 +17,20 @@
 
 ## $${\color{grey}Description:}$$ 
 This script creates and stores AES encrypted credential files for import into scripts.  The script has two functions, encode and decode.  
-* First it prompts for admin user credentials and generates a random 32 byte key.
-* The credentials are then encrypted using the key as a salt and AES encryption.  The key and encrypted
+
+If the default file names are used and they are detected in the script folder you are prompted to either encode new files, or decode the exisitng ones.
+
+To Encode:
+* You are prompted for admin user credentials using th standard PowerShell credential GUI.
+* A random 32 byte (adjustable) key is then generated.
+* The entered credentials are then encrypted using the key as a salt and AES encryption.  The key and encrypted
 credential are both stored in text files in the script local folder (the location can be changed).  It's recommended that
 the file names be altered and then stored in a different location.
 * Once created the encrypted files can be called by scripts requiring admin credentials.  Using this method you can set all your scripts to automatically 
 run using the stored credentials without prompting.
-* If the files already exist in the script folder it script will decrypt them if prompted and display the results on screen.
+
+To Decode:
+* If the files already exist in the script folder select "D" when prompted and the script will decrypt the encoded files and isplay the results on screen.
 
 ## $${\color{grey}Notes:}$$ 
 * Normal operation is with no command line options.
