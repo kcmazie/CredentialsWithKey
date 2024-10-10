@@ -32,6 +32,9 @@ run using the stored credentials without prompting.
 To Decode:
 * If the files already exist in the script folder select "D" when prompted and the script will decrypt the encoded files and isplay the results on screen.
 
+To Use Within a Script:
+* Copy the section that decodes the files and place it in your script.  Place the encrypted files in another location, preferrably secured by NTFS file permissions and an AD user ID.
+
 ## $${\color{grey}Notes:}$$ 
 * Normal operation is with no command line options.
 * Powershell 5.1 is the minimal version required.
