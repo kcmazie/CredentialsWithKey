@@ -26,6 +26,7 @@ To Encode:
 * The entered credentials are then encrypted using the key as a salt and AES encryption.  The key and encrypted
 credential are both stored in text files in the script local folder (the location can be changed).  It's recommended that
 the file names be altered and then stored in a different location.
+* The encrypted files are then decrypted and displayed on screen to verify the decryption works with the resulting files.
 * Once created the encrypted files can be called by scripts requiring admin credentials.  Using this method you can set all your scripts to automatically 
 run using the stored credentials without prompting.
 
