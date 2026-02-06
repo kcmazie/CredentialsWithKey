@@ -53,7 +53,7 @@ This is an example of the screen output (assuming you use dark mode anyway...)
 
 ### $${\color{grey}Enhancements:}$$ 
 Some possible future enhancements are:
-* None at this time
+* Plans to include a GUI in the future.
 
 ### $${\color{grey}Legal:}$$ 
 Public Domain. Modify and redistribute freely. No rights reserved. 
@@ -68,6 +68,8 @@ Code snippets and/or ideas came from many sources including but not limited to t
 ### $${\color{grey}Version \\& Change History:}$$ 
 * Last Update by  : Kenneth C. Mazie 
   * Initial Release : v1.00 - 09-09-17 - Original release
-  * Change History  : v1.10 - 03-02-18 - Minor adjustments.
-                    : v1.20 - 05-08-23 - Minor adjustments for publishing. 
+  * Change History  :
+  * * v1.10 - 03-02-18 - Minor adjustments.<br>
+  * * v1.20 - 05-08-23 - Minor adjustments for publishing.
+  * * v1.30 - 02-06-26 - Minor adjustment to file names and location.  Files are now generated in the same location as the script. 
  </span>
