@@ -1,5 +1,4 @@
-﻿
-<#------------------------------------------------------------------------------ 
+﻿<#------------------------------------------------------------------------------ 
          File Name : CredentialsWithKey.ps1 
    Original Author : Kenneth C. Mazie (kcmjr AT kcmjr.com) 
                    : 
@@ -24,26 +23,17 @@
    Version History : v1.00 - 09-09-17 - Original 
     Change History : v1.10 - 03-02-18 - Minor adjustments.
                    : v1.20 - 05-08-23 - Minor adjustments for publishing.
+                   : v1.30 - 02-06-26 - Minor adjustment to file names and location.  Files now 
+                   :                    are generated in the same location as the script.    
                    : v0.00 - 00-00-00
                    :  
 ------------------------------------------------------------------------------#>
-<#PSScriptInfo 
-.VERSION 1.20 
-.AUTHOR Kenneth C. Mazie (kcmjr AT kcmjr.com) 
-.DESCRIPTION 
-The script has two functions.  First it prompts for admin user credentials and generates a random key.
-The credentials are then encrypted using the key as a salt and AES encryption.  The key and encrypted
-credential are both stored in text file in the script local folder (this can be changed).  It's recommended that
-the file names be altered and stored in different location.  Once created the credentials can be called
-by scripts requiring admin credentials.  Using this method you can set all your scripts to automatically 
-run using the stored credentials without prompting.  If the files already exist the script will decrypt 
-them when prompted and display the results on screen.
-#>
+
 #Requires -Version 5.1
 
 Clear-Host 
-$PasswordFile = "$PSScriptRoot\AESPassword.txt"
-$KeyFile = "$PSSCriptRoot\AESkey.txt"
+$PasswordFile = "$PSScriptRoot\AESP.txt"
+$KeyFile = "$PSSCriptRoot\AESK.txt"
 
 Function RandomKey {   #-[[ function creates a random byte string of specified length ]--
 	$Script:Length = 32 #16,24, or 32
@@ -67,7 +57,6 @@ If ((Test-Path $PasswordFile) -and (Test-Path $KeyFile)){
 If ($Choice -eq "G"){
     Write-host "`n--[ Generating new credential files... ]-----------------" -ForegroundColor White
     #----------[ Creating AES key with random data and export to file ]-------------
-    $KeyFile = "$PSScriptRoot\AESkey.txt"
     $ByteArray = RandomKey
     #$RndKey = New-Object Byte[] 16   # You can use 16, 24, or 32 for AES
     [Security.Cryptography.RNGCryptoServiceProvider]::Create().GetBytes($ByteArray)
@@ -82,8 +71,8 @@ If ($Choice -eq "G"){
     write-host "UserName Entered                         :"$UN -ForegroundColor Red 
     write-host "Domain Entered                           :"$DN -ForegroundColor Red 
     write-host "Password Entered                         :"$CredPrompt.GetNetworkCredential().Password -ForegroundColor Red 
-    write-host "Byte Array length (Bytes)                :"$Script:Length -ForegroundColor Magenta
-    write-host "Byte Array (AES Key)                     :"$Script:ByteArray -ForegroundColor Magenta
+    write-host "Byte Array length (Bytes)                :"$Length -ForegroundColor Magenta
+    write-host "Byte Array (AES Key)                     :"$ByteArray -ForegroundColor Magenta
     Write-Host "Byte Array as base64 string to file      :"$Base64String -ForegroundColor Cyan 
 
     #-------------[ Creating SecureString object ]----------------------------------
@@ -96,8 +85,6 @@ If ($Choice -eq "G"){
 If (($Choice -eq "G") -or ($Choice -eq "D")){
     Write-host "`n--[ Decoding credential files... ]-----------------------"-ForegroundColor White
     #------------[ Creating PSCredential object ]-----------------------------------
-    $PasswordFile = "$PSScriptRoot\AESPassword.txt"
-    $KeyFile = "$PSSCriptRoot\AESkey.txt"
     $Base64String = (Get-Content $KeyFile)
     $ByteArray = [System.Convert]::FromBase64String($Base64String)
     write-host "Decoded AES Encryption Key               :"$ByteArray -ForegroundColor Magenta
